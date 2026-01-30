@@ -6,7 +6,7 @@ class Animal :
         self.age = 0
         self.compteur = 0
     
-    def upgrade_energy(self, ):
+    def upgrade_energy(self):
         self.compteur += 1
 
         if (self.compteur == 20 or self.compteur == 40) and self.age < 3:
@@ -16,7 +16,7 @@ class Animal :
             self.energy -= 10
     
     def move(self, target):
-        target_near = is_target_here(target)
+        target_near = is_target_near()
         directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]
 
         if target_near != (0, 0, 0, 0):
