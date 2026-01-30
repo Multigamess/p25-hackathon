@@ -22,5 +22,12 @@ optionnel
 1. IA pour les loups/moutons
 2. obstacles (rivières)
 
-alexandre ne contribue pas au projet --> c'est réel !
+- Zinky zoogle, zeekybooble beeble meep Forp Bogos Binted ?
+- Photos printed
+- Vorp ?
+
+
+- Hey, just wondering if you got your photos printed ?
+- Bogos binted ?
+- What ?
 
