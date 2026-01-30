@@ -46,3 +46,6 @@ class Wolf(Animal):
 
         if self.world.is_there_sheep(self.position):
             self.eat_sheep()
+        
+        if self.energy < 0:
+            self.die()

@@ -16,7 +16,7 @@ class Animal:
         if (self.compteur == 20 or self.compteur == 40) and self.age < 3:
             self.age += 1
 
-        if self.compteur == 20:
+        if self.compteur == 10:
             self.energy -= 10
 
     def get_next_move(self, target):

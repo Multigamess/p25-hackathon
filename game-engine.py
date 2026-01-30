@@ -13,7 +13,7 @@ INITIAL_WOLVES = 10
 INITIAL_GRASS_COVERAGE = 0.3
 
 SHEEP_INITIAL_ENERGY = 20
-WOLF_INITIAL_ENERGY = 40
+WOLF_INITIAL_ENERGY = 10
 
 
 class Game:
@@ -87,7 +87,7 @@ class Game:
     def update_wolves(self):
         for wolf in self.world.wolves:
             wolf.update()
-            print(wolf.position)
+            print(wolf.position, wolf.energy)
             self.draw_wolf(wolf.position)
 
     def draw_sheep(self, pos):

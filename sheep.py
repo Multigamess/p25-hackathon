@@ -13,6 +13,9 @@ class Sheep(Animal):
         self.energy += grass.age * 10
         grass.die()
 
+    def reproduce(self):
+        pass
+    
     def move(self):
         neighbors = self.get_neighbors()
         target = rd.choice(neighbors)
@@ -40,6 +43,9 @@ class Sheep(Animal):
         if self.world.is_there_grass(self.position):
             self.eat_grass(self.position)
             print(f'Grass in {self.position} eaten')
+        
+        if self.energy < 0:
+            self.die()
 
     def die(self):
         self.compteur = 0
