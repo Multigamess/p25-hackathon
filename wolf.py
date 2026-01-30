@@ -15,11 +15,17 @@ class Wolf(Animal):
 
     def reproduce(self):
         if self.energy > 80:
-            pos = rd.choice(self.world.get_neighbors(self.position))
-            child = Wolf(self.world, config.WOLF_INITIAL_ENERGY,
+            neighbours_valid=[]
+            for square in self.world.get_neighbors(self.position):
+                if not(self.world.is_there_sheep(square)):
+                    neighbours_valid.append(square)
+            if len(neighbours_valid)>0:
+                pos = rd.choice(neighbours_valid)
+                child = Wolf(self.world, config.WOLF_INITIAL_ENERGY,
                          pos, config.WOLF_ENERGY_LOSS_PER_TURN)
-            self.world.wolves.append(child)
-            self.energy -= 20
+                self.world.wolves.append(child)
+                self.energy -= 20
+
 
     def move(self):
 
