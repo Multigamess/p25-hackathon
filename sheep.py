@@ -38,7 +38,6 @@ class Sheep(Animal):
 
     def update(self):
         self.move()
-        self.upgrade_energy()
 
         if self.world.is_there_grass(self.position):
             self.eat_grass(self.position)
@@ -48,6 +47,6 @@ class Sheep(Animal):
             self.die()
 
     def die(self):
-        self.comtickpteur = 0
+        self.tick = 0
         self.age = 0
         self.world.sheeps.remove(self)
