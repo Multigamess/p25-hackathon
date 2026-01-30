@@ -47,11 +47,7 @@ class Wolf(Animal):
         if self.world.is_there_sheep(self.position):
             self.eat_sheep()
 
-        if (self.tick == 20 or self.tick == 40) and self.age < 3:
-            self.age += 1
-
-        if self.tick % 10 == 0:
-            self.energy -= 10
+        self.upgrade_energy(5)
 
         if self.energy < 0:
             self.die()
