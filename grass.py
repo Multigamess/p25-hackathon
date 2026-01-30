@@ -24,7 +24,7 @@ class Grass:
             self.age += 1
         if self.dead==1 and compteur>10:
             x = np.random()
-            if x<0.1:
+            if x<0.7:
                 self.age = 0
                 self.dead = 0
                 self.world.grasses.append(self)
