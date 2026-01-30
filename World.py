@@ -22,6 +22,26 @@ class World:
     def tick(self):
         self.world_time.add_second(1)
         pass
+    
+        
+    def is_there_wolf(self, square):
+        wolves_pos = []
+        for w in self.wolves:
+            wolves_pos = w.pos.append()
+        if square in wolves_pos:
+            return True
+        else:
+            return False
+
+    def is_there_grass(self, square):
+        grass_pos = []
+        for g in self.grasses:
+            grass_pos = g.position.append()
+        if square in grass_pos:
+            return True
+        else:
+            return False
+
 
     def display(self):
 
