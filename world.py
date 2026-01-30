@@ -28,7 +28,7 @@ class World:
     def is_there_wolf(self, square):
         wolves_pos = []
         for w in self.wolves:
-            wolves_pos = w.pos.append()
+            wolves_pos = w.position.append()
         if square in wolves_pos:
             return True
         else:
