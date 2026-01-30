@@ -40,22 +40,22 @@ class Grass:
 
 
 class World:
-    def __init__(self):
-        self.size
+    def __init__(self, grid_size):
+        self.grid_size = grid_size
         self.world_time = Time(0, 0, 0)
-        self.height_map = self.generate_world()
+        self.heightmap = self.generate_heightmap()
         self.grasses = {}
         pass
 
     def generate_grass(self, p=0.1):
-        grass_init = np.random.rand(self.size, self.size) < p
+        grass_init = np.random.rand(self.grid_size, self.grid_size) < p
         grass_positions = np.argwhere(grass_init)
 
         for pos in grass_positions:
             self.grasses[pos] = Grass(pos, 0)
 
     def generate_heightmap(self):
-        return np.random.uniform(0, 1, (self.size, self.size))
+        return np.random.uniform(0, 1, (self.grid_size, self.grid_size))
 
     def tick(self):
         self.world_time.add_second(1)

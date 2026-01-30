@@ -1,6 +1,8 @@
 import pygame
 from pygame.locals import *
 import sys
+import World
+import numpy as np
 
 
 class Game:
@@ -12,6 +14,11 @@ class Game:
         self.window.fill((0, 255, 0))
 
         self.is_running = False
+
+        self.world = World.World(grid_size)
+
+        for pos, value in np.ndenumerate(self.world.heightmap):
+            self.set_square(pos, (0, int(value * 255), 0))
 
     def set_square(self, pos, color):
         s = Square(self.square_size, color)
@@ -44,6 +51,4 @@ class Square(pygame.sprite.Sprite):
 
 
 game = Game(40, 15)
-
-game.set_square((1, 1), (255, 0, 0))
 game.run()
