@@ -11,16 +11,15 @@ class Game:
         self.square_size = square_size
         self.window = pygame.display.set_mode(
             (grid_size*square_size, grid_size*square_size))
-        self.window.fill((0, 255, 0))
+        self.window.fill((125, 63, 24))
 
         self.is_running = False
 
         self.world = World.World(grid_size)
 
-        for pos, value in np.ndenumerate(self.world.heightmap):
-            self.set_square(pos, (0, abs(int(value * 255)), 0))
-
-        self.all_sprites_list = pygame.sprite.Group()
+        for grass in self.world.grasses:
+            self.set_square(grass.position, (34, 214, 9)
+                            if grass.age == 1 else (32, 168, 13))
 
     def set_square(self, pos, color):
         s = Square(self.square_size, color)
@@ -35,8 +34,6 @@ class Game:
         while self.is_running:
             self.game_loop()
 
-            all_sprites_list.update()
-
             pygame.display.flip()
 
     def game_loop(self):
@@ -46,15 +43,18 @@ class Game:
                 pygame.quit()
                 sys.exit()
 
+            game.display_sheep((1, 3))
+            game.display_wolf((1, 5))
 
-class Sprite(pygame.sprite.Sprite):
-    def __init__(self, color, width, height):
-        pygame.sprite.Sprite.__init__(self)
+    def display_sheep(self, pos):
+        s = Square(self.square_size, (255, 255, 255))
+        self.window.blit(
+            s.surf, (pos[0]*self.square_size, pos[1]*self.square_size))
 
-        self.image = pygame.Surface([width, height])
-        self.image.fill(color)
-
-        self.rect = self.image.get_rect()
+    def display_wolf(self, pos):
+        s = Square(self.square_size, (255, 20, 20))
+        self.window.blit(
+            s.surf, (pos[0]*self.square_size, pos[1]*self.square_size))
 
 
 class Square(pygame.sprite.Sprite):
@@ -65,11 +65,4 @@ class Square(pygame.sprite.Sprite):
 
 
 game = Game(40, 15)
-
-sprite = Sprite((255, 0, 0), 15, 15)
-sprite.rect.x = 0
-sprite.rect.y = 0
-
-game.all_sprites_list.add(sprite)
-
 game.run()
