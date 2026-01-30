@@ -3,8 +3,8 @@ import random as rd
 
 
 class Grass:
-    def __init__(self, position, age):
-
+    def __init__(self, world, position, age):
+        self.world = world
         self.position = position
         self.age = age
         self.compteur = 0

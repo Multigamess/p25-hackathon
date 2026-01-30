@@ -13,15 +13,16 @@ class Wolf(Animal):
 
         nearest_sheep = self.get_nearest_sheep()
         if not nearest_sheep is None:
-            next_move = self.get_next_move(nearest_sheep.pos)
-            self.pos = (self.pos[0]+next_move[0], self.pos[1]+next_move[1])
+            next_move = self.get_next_move(nearest_sheep.position)
+            self.position = (
+                self.position[0]+next_move[0], self.position[1]+next_move[1])
 
     def get_nearest_sheep(self):
         min_distance = float('inf')
         nearest = None
         for s in self.world.sheeps:
-            dx = abs(s.pos[0] - self.pos[0])
-            dy = abs(s.pos[1] - self.pos[1])
+            dx = abs(s.position[0] - self.position[0])
+            dy = abs(s.position[1] - self.position[1])
             if dx + dy < min_distance:
                 min_distance = dx + dy
                 nearest = s

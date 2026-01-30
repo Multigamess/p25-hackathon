@@ -62,13 +62,13 @@ class Game:
 
     def update_sheeps(self):
         for sheep in self.world.sheeps:
-            self.draw_sheep(sheep.pos)
+            self.draw_sheep(sheep.position)
 
     def update_wolves(self):
         for wolf in self.world.wolves:
             wolf.move_wolf()
-            print(wolf.pos)
-            self.draw_wolf(wolf.pos)
+            print(wolf.position)
+            self.draw_wolf(wolf.position)
 
     def draw_sheep(self, pos):
         s = Square(self.square_size, (255, 255, 255))
@@ -92,6 +92,6 @@ class Square(pygame.sprite.Sprite):
 
 game = Game(40, 16)
 world = game.world
-world.wolves.append(Wolf(1, (0, 0), world))
-world.sheeps.append(Sheep(1, (30, 30), world))
+world.wolves.append(Wolf(world, 1, (0, 0)))
+world.sheeps.append(Sheep(world, 1, (30, 30)))
 game.run()

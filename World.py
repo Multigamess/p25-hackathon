@@ -17,7 +17,7 @@ class World:
         grass_positions = np.argwhere(grass_init)
 
         for pos in grass_positions:
-            self.grasses.append(Grass(pos, rd.randint(1, 2)))
+            self.grasses.append(Grass(self, pos, rd.randint(1, 2)))
 
     def tick(self):
         self.world_time.add_second(1)

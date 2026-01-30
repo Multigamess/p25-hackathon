@@ -3,10 +3,10 @@ import numpy as np
 
 
 class Animal:
-    def __init__(self, energy, position, world):
+    def __init__(self, world, energy, position):
         self.world = world
         self.energy = energy
-        self.pos = position
+        self.position = position
         self.age = 0
         self.compteur = 0
 
@@ -20,8 +20,8 @@ class Animal:
             self.energy -= 10
 
     def get_next_move(self, target):
-        dx = target[0] - self.pos[0]
-        dy = target[1] - self.pos[1]
+        dx = target[0] - self.position[0]
+        dy = target[1] - self.position[1]
 
         next_move = (0, 0)
         # probabilty to go in x direction
