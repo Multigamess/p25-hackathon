@@ -17,7 +17,7 @@ class Wolf(Animal):
         if self.energy > 80:
             neighbours_valid=[]
             for square in self.world.get_neighbors(self.position):
-                if not(self.world.is_there_sheep(square)):
+                if not(self.world.is_there_wolf(square)):
                     neighbours_valid.append(square)
             if len(neighbours_valid)>0:
                 pos = rd.choice(neighbours_valid)
@@ -34,7 +34,7 @@ class Wolf(Animal):
             next_move = self.get_next_move(nearest_sheep.position)
             new_pos = self.position[0] + \
                 next_move[0], self.position[1]+next_move[1]
-            if self.world.is_valid_coordinates(new_pos):
+            if self.world.is_valid_coordinates(new_pos) and not(self.world.is_there_wolf(new_pos)):
                 self.position = new_pos
 
     def get_nearest_sheep(self):
