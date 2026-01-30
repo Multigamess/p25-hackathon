@@ -1,10 +1,10 @@
 import pygame
 from pygame.locals import *
 import sys
-import World
 import numpy as np
 from wolf import Wolf
 from sheep import Sheep
+from world import World
 
 
 class Game:
@@ -16,7 +16,7 @@ class Game:
 
         self.is_running = False
 
-        self.world = World.World(grid_size)
+        self.world = World(grid_size)
 
         self.draw_terrain()
         self.update_sheeps()
