@@ -7,7 +7,7 @@ dim = 50
 
 class sheep :
     def __init__(self, v, position, age = 20):
-        self.vie = v
+        self.life= v
         self.pos = position #un couple(x, y)
         self.age = age
     
@@ -15,10 +15,10 @@ class sheep :
         self.age += 1
     
     def eat_grass(self):
-        self.vie+=energy_grass
+        self.life+=energy_grass
     
     def fuck(self):
-        if self.vie>20:
+        if self.life>20:
             mouton2 = sheep(30, (self.pos[0],self.pos[1]), 0)
             self.vie-=20
 
