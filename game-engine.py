@@ -3,6 +3,8 @@ from pygame.locals import *
 import sys
 import World
 import numpy as np
+from wolf import Wolf
+from sheep import Sheep
 
 
 class Game:
@@ -31,13 +33,10 @@ class Game:
 
     def run(self):
         self.is_running = True
-        sheep = game.draw_sheep((1, 3))
-        wolf = game.draw_wolf((1, 5))
         while self.is_running:
             pygame.time.delay(1000)
 
             self.game_loop()
-            sheep.kill()
 
             pygame.display.flip()
 
@@ -50,23 +49,26 @@ class Game:
 
     def game_loop(self):
         print("test")
+        # quit window
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
-            self.draw_terrain()
+        self.draw_terrain()
 
-            self.update_sheeps()
-            self.update_wolves()
+        self.update_sheeps()
+        self.update_wolves()
 
     def update_sheeps(self):
         for sheep in self.world.sheeps:
-            self.draw_sheep(sheep.position)
+            self.draw_sheep(sheep.pos)
 
     def update_wolves(self):
         for wolf in self.world.wolves:
-            self.draw_sheep(wolf.position)
+            wolf.move_wolf()
+            print(wolf.pos)
+            self.draw_wolf(wolf.pos)
 
     def draw_sheep(self, pos):
         s = Square(self.square_size, (255, 255, 255))
@@ -88,5 +90,8 @@ class Square(pygame.sprite.Sprite):
         self.surf.fill(color)
 
 
-game = Game(40, 15)
+game = Game(40, 16)
+world = game.world
+world.wolves.append(Wolf(1, (0, 0), world))
+world.sheeps.append(Sheep(1, (30, 30), world))
 game.run()

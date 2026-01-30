@@ -1,10 +1,12 @@
 import numpy as np
 import random as rd
+from grass import Grass
+from wolf import Wolf
+
 
 class World:
     def __init__(self, grid_size):
         self.grid_size = grid_size
-        self.world_time = Time(0, 0, 0)
         self.grasses = []
         self.generate_grass(p=0.8)
         self.wolves = []
