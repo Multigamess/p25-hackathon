@@ -13,3 +13,6 @@ SHEEP_ENERGY_LOSS_PER_TURN: perte d'énergie par pas de simu pour les moutons
 WOLF_ENERGY_LOSS_PER_TURN: perte d'énergie par pas de simu pour les loups
 GRASS_REGROWTH_TIME: période de repousse de l'herbe
 
+Les règles implémentées sont les suivantes:
+-les moutons mangent de l'hebre pour gagner de l'énergie
+-les moutons 

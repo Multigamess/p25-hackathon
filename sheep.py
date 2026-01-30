@@ -16,11 +16,16 @@ class Sheep(Animal):
 
     def reproduce(self):
         if self.energy > 50:
-            pos = rd.choice(self.world.get_neighbors(self.position))
-            child = Sheep(self.world, config.SHEEP_INITIAL_ENERGY,
+            neighbours_valid=[]
+            for square in self.world.get_neighbors(self.position):
+                if not(self.world.is_there_sheep(square)):
+                    neighbours_valid.append(square)
+            if len(neighbours_valid)>0:
+                pos = rd.choice(neighbours_valid)
+                child = Sheep(self.world, config.SHEEP_INITIAL_ENERGY,
                           pos, config.SHEEP_ENERGY_LOSS_PER_TURN)
-            self.world.sheeps.append(child)
-            self.energy -= 20
+                self.world.sheeps.append(child)
+                self.energy -= 20
 
     def move(self):
         neighbors = self.world.get_neighbors(self.position)
