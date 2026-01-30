@@ -47,13 +47,14 @@ class Wolf(Animal):
     def move(self):
 
         nearest_sheep = self.get_nearest_sheep()
-        if not nearest_sheep is None:
-            next_move = self.get_next_move(nearest_sheep.position)
-            print("next move", next_move)
-            new_pos = self.position[0] + \
-                next_move[0], self.position[1]+next_move[1]
-            if self.world.is_valid_coordinates(new_pos) and not (self.world.has_wolf(new_pos)) and not (self.world.has_water(new_pos)):
-                self.position = new_pos
+        target = nearest_sheep.position if not nearest_sheep is None else rd.choice(
+            self.world.get_neighbors(self.position))
+        next_move = self.get_next_move(target)
+
+        new_pos = self.position[0] + \
+            next_move[0], self.position[1]+next_move[1]
+        if self.world.is_valid_coordinates(new_pos) and not (self.world.has_wolf(new_pos)) and not (self.world.has_water(new_pos)):
+            self.position = new_pos
 
     def get_nearest_sheep(self):
         min_distance = float('inf')
