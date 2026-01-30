@@ -3,14 +3,15 @@ import numpy as np
 from grass import *
 from animal import Animal
 
-dim = 50
-
 
 class Sheep(Animal):
 
-    def eat_grass(self, grass):
+    def eat_grass(self, grass_position):
+        for gra in self.world.grasses:
+            if gra.position == grass_position:
+                grass = gra
         self.energy += grass.age * 10
-        grass.ate()
+        grass.die()
 
     def move(self):
         neighbors = self.get_neighbors()
@@ -31,6 +32,14 @@ class Sheep(Animal):
             if self.world.is_valid_coordinates((x, y)):
                 neighbors.append((x, y))
         return neighbors
+    
+    def update(self):
+        self.move()
+        self.upgrade_energy()
+
+        if self.world.is_there_grass(self.position):
+            self.eat_grass(self.position)
+            print(f'Grass in {self.position} eaten')
 
     def sheep_ate(self):
         pass

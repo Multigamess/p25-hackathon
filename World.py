@@ -35,7 +35,7 @@ class World:
     def is_there_grass(self, square):
         grass_pos = []
         for g in self.grasses:
-            grass_pos = g.position.append()
+            grass_pos.append(g.position)
         if square in grass_pos:
             return True
         else:

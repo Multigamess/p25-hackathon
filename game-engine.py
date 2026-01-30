@@ -67,7 +67,7 @@ class Game:
 
     def update_sheeps(self):
         for sheep in self.world.sheeps:
-            sheep.move()
+            sheep.update()
             self.draw_sheep(sheep.position)
 
     def update_wolves(self):
