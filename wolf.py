@@ -29,3 +29,8 @@ class Wolf(Animal):
                 min_distance = dx + dy
                 nearest = s
         return nearest
+
+    def die(self):
+        self.compteur = 0
+        self.age = 0
+        self.world.wolves.remove(self)
