@@ -19,13 +19,40 @@ class Time:
         self.second = (self.second + s) % 60
 
 
+class Grass:
+    def __init__(self, position, age):
+
+        self.position = position
+        self.age = age
+        self.compteur = 0
+    
+    def update_grass(self):
+        
+        self.compteur += 1
+
+        if (self.compteur == 10 or self.compteur == 20) and self.age < 3:
+            self.age += 1
+    
+    def grass_ate(self):
+
+        self.compteur = 0
+        self.age = 0
+
+
 class World:
     def __init__(self):
         self.size
         self.world_time = Time(0, 0, 0)
         self.map = self.generate_world()
-        self.grasses = []
+        self.grasses = {}
         pass
+    
+    def generate_grass(self, p=0.1):
+        grass_init = np.random.rand(self.size, self.size) < p
+        grass_positions = np.argwhere(grass_init)
+
+        for pos in grass_positions:
+            grasses[pos] = Grass(pos, 0)
 
     def generate_heightmap(self):
         heightmap = np.random.uniform(0, 1, (self.size, self.size))
