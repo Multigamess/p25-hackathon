@@ -62,11 +62,11 @@ class World:
         positions = []
         for i in range(wolves_count):
             pos = (rd.randint(
-                0, self.grid_size), rd.randint(0, self.grid_size))
+                0, self.grid_size-1), rd.randint(0, self.grid_size-1))
 
             while pos in positions:
                 pos = (rd.randint(
-                    0, self.grid_size), rd.randint(0, self.grid_size))
+                    0, self.grid_size-1), rd.randint(0, self.grid_size-1))
 
             positions.append(pos)
 
@@ -78,11 +78,11 @@ class World:
         positions = []
         for i in range(sheeps_count):
             pos = (rd.randint(
-                0, self.grid_size), rd.randint(0, self.grid_size))
+                0, self.grid_size-1), rd.randint(0, self.grid_size-1))
 
             while pos in positions:
                 pos = (rd.randint(
-                    0, self.grid_size), rd.randint(0, self.grid_size))
+                    0, self.grid_size-1), rd.randint(0, self.grid_size-1))
 
             positions.append(pos)
 
