@@ -12,8 +12,12 @@ INITIAL_SHEEPS = 50
 INITIAL_WOLVES = 10
 INITIAL_GRASS_COVERAGE = 0.3
 
-SHEEP_INITIAL_ENERGY = 50
-WOLF_INITIAL_ENERGY = 50
+SHEEP_INITIAL_ENERGY = 20
+WOLF_INITIAL_ENERGY = 10
+SHEEP_ENERGY_LOSS_PER_TURN = 1
+WOLF_ENERGY_LOSS_PER_TURN = 2
+
+GRASS_REGROWTH_TIME = 7
 
 
 class Game:
@@ -27,7 +31,7 @@ class Game:
         self.is_running = False
 
         self.world = World(GRID_SIZE)
-        self.world.generate_grass(INITIAL_GRASS_COVERAGE)
+        self.world.generate_grass(INITIAL_GRASS_COVERAGE, GRASS_REGROWTH_TIME)
 
         self.draw_terrain()
         self.update_sheeps()
@@ -133,8 +137,10 @@ class Square(pygame.sprite.Sprite):
 
 game = Game()
 world = game.world
-world.spawn_wolves(INITIAL_WOLVES, WOLF_INITIAL_ENERGY)
-world.spawn_sheeps(INITIAL_SHEEPS, SHEEP_INITIAL_ENERGY)
+world.spawn_wolves(INITIAL_WOLVES, WOLF_INITIAL_ENERGY,
+                   WOLF_ENERGY_LOSS_PER_TURN)
+world.spawn_sheeps(INITIAL_SHEEPS, SHEEP_INITIAL_ENERGY,
+                   SHEEP_ENERGY_LOSS_PER_TURN)
 # world.wolves.append(Wolf(world, 1, (0, 0)))
 # world.sheeps.append(Sheep(world, 1, (30, 30)))
 game.run()

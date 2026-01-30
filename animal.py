@@ -3,7 +3,7 @@ import numpy as np
 
 
 class Animal:
-    def __init__(self, world, energy, position):
+    def __init__(self, world, energy, position, ernergy_loss_per_turn):
         self.world = world
         self.energy = energy
         self.position = position
