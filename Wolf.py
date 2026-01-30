@@ -1,27 +1,25 @@
-import random as rd
-import numpy as np
-from grass.py import *
-
-dim = 50
-
-
-class Sheep(Animal):
-
+class Animal :
+    def __init__(self, energy, position):
+        self.energy = energy
+        self.pos = position
+        self.age = 0
     
-    def eat_grass(self, grass):
-        self.energy += grass.age * 10
-        grass.ate()
+    def upgrade_energy(self):
+        self.age += 1
+        self.energy -= 1
 
+
+class Wolf(Animal) :
     def move(self):
-        h = grass()
-        if h!= (0,0,0,0):
-            M = h[0]
+        s = get_sheep()
+        if s!= (0,0,0,0):
+            M = s[0]
             i_max=0
             for i in range(1, 4):
-                if h[i]>M:
-                    M = h[i]
+                if s[i]>M:
+                    M = s[i]
                     i_max = i
-                elif h[i]==M:
+                elif s[i]==M:
                     i_max = rd.choice(i_max, i)
             if i_max==0:
                 self.pos[1]+=1
@@ -56,4 +54,3 @@ class Sheep(Animal):
             elif n==3:
                 if self.pos[1]<dim-1:
                     self.pos[0]+=1
-
