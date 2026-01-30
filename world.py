@@ -33,6 +33,15 @@ class World:
         else:
             return False
 
+    def get_neighbors(self, pos):
+        to_check = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        neighbors = []
+        for v in to_check:
+            x, y = pos[0] + v[0], pos[1] + v[1]
+            if self.is_valid_coordinates((x, y)):
+                neighbors.append((x, y))
+        return neighbors
+
     def is_there_grass(self, pos):
         for g in self.grasses:
             if g.position[0] == pos[0] and g.position[1] == pos[1]:

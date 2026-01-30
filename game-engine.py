@@ -72,7 +72,7 @@ class Game:
         while self.is_running:
             self.game_loop()
             pygame.display.flip()
-            pygame.time.delay(1000)
+            pygame.time.delay(500)
 
     def draw_terrain(self):
         self.window.fill((125, 63, 24))
