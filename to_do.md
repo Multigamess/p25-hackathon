@@ -31,3 +31,9 @@ optionnel
 - Bogos binted ?
 - What ?
 
+
+
+update de 14h30 :
+- résoudre les conflits entre moutons/loups
+- manger l'herbe
+- manger les moutons
