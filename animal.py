@@ -10,6 +10,13 @@ class Animal:
         self.age = 0
         self.tick = 0
 
+    def upgrade_energy(self, energy_loss):
+        if (self.tick == 20 or self.tick == 40) and self.age < 3:
+            self.age += 1
+
+        if self.tick % 10 == 0:
+            self.energy -= energy_loss
+
     def get_next_move(self, target):
         dx = target[0] - self.position[0]
         dy = target[1] - self.position[1]

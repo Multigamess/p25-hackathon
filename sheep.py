@@ -43,6 +43,8 @@ class Sheep(Animal):
             self.eat_grass(self.position)
             print(f'Grass in {self.position} eaten')
 
+        self.upgrade_energy(5)
+
         if self.energy < 0:
             self.die()
 
