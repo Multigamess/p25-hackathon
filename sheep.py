@@ -24,7 +24,7 @@ class Sheep(Animal):
         print("next_move", next_move)
         new_pos = self.position[0] + \
             next_move[0], self.position[1]+next_move[1]
-        if self.world.is_valid_coordinates(new_pos):
+        if self.world.is_valid_coordinates(new_pos) and not(self.world.is_there_sheep(new_pos)):
             self.position = new_pos
 
     def get_neighbors(self):
