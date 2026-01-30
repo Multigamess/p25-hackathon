@@ -55,18 +55,24 @@ class Game:
                 pygame.quit()
                 sys.exit()
 
+        self.update_grasses()
         self.draw_terrain()
 
         self.update_sheeps()
         self.update_wolves()
 
+    def update_grasses(self):
+        for grass in self.world.grasses:
+            grass.update()
+
     def update_sheeps(self):
         for sheep in self.world.sheeps:
+            sheep.move()
             self.draw_sheep(sheep.position)
 
     def update_wolves(self):
         for wolf in self.world.wolves:
-            wolf.move_wolf()
+            wolf.move()
             print(wolf.position)
             self.draw_wolf(wolf.position)
 
@@ -93,5 +99,5 @@ class Square(pygame.sprite.Sprite):
 game = Game(40, 16)
 world = game.world
 world.wolves.append(Wolf(world, 1, (0, 0)))
-world.sheeps.append(Sheep(world, 1, (30, 30)))
+world.sheeps.append(Sheep(world, 1, (39, 39)))
 game.run()

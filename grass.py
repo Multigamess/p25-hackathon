@@ -9,14 +9,14 @@ class Grass:
         self.age = age
         self.compteur = 0
 
-    def update_grass(self):
+    def update(self):
 
         self.compteur += 1
 
         if (self.compteur == 10 or self.compteur == 20) and self.age < 3:
             self.age += 1
 
-    def grass_ate(self):
-
+    def die(self):
         self.compteur = 0
         self.age = 0
+        self.world.grasses.remove(self)

@@ -23,6 +23,9 @@ class World:
         self.world_time.add_second(1)
         pass
 
+    def is_valid_coordinates(self, x, y):
+        return 0 <= x and x < self.grid_size and 0 <= y and y < self.grid_size
+
     def display(self):
 
         pass

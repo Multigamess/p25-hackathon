@@ -9,13 +9,15 @@ class Wolf(Animal):
     def eat_sheep(self):
         self.energy += 10
 
-    def move_wolf(self):
+    def move(self):
 
         nearest_sheep = self.get_nearest_sheep()
         if not nearest_sheep is None:
             next_move = self.get_next_move(nearest_sheep.position)
-            self.position = (
-                self.position[0]+next_move[0], self.position[1]+next_move[1])
+            new_pos = self.position[0] + \
+                next_move[0], self.position[1]+next_move[1]
+            if self.world.is_valid_coordinates(new_pos):
+                self.position = new_pos
 
     def get_nearest_sheep(self):
         min_distance = float('inf')
