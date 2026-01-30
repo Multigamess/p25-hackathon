@@ -39,7 +39,7 @@ class Sheep(Animal):
         if self.world.is_there_grass(self.position):
             self.eat_grass(self.position)
 
-        self.upgrade_energy(5)
+        self.upgrade_energy(config.SHEEP_ENERGY_LOSS_PER_TURN)
 
         self.reproduce()
 

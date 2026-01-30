@@ -1,7 +1,6 @@
-from random import randint as rd
+import random as rd
 from animal import Animal
-
-dim = 50
+import gameconfig as config
 
 
 class Wolf(Animal):
@@ -13,6 +12,14 @@ class Wolf(Animal):
                 sheep = s
         self.energy += sheep.age * 10
         sheep.die()
+
+    def reproduce(self):
+        if self.energy > 80:
+            pos = rd.choice(self.world.get_neighbors(self.position))
+            child = Wolf(self.world, config.WOLF_INITIAL_ENERGY,
+                         pos, config.WOLF_ENERGY_LOSS_PER_TURN)
+            self.world.wolves.append(child)
+            self.energy -= 20
 
     def move(self):
 
@@ -47,7 +54,9 @@ class Wolf(Animal):
         if self.world.is_there_sheep(self.position):
             self.eat_sheep()
 
-        self.upgrade_energy(5)
+        self.reproduce()
+
+        self.upgrade_energy(config.WOLF_ENERGY_LOSS_PER_TURN)
 
         if self.energy < 0:
             self.die()
