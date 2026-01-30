@@ -20,6 +20,8 @@ class Game:
         for pos, value in np.ndenumerate(self.world.heightmap):
             self.set_square(pos, (0, abs(int(value * 255)), 0))
 
+        self.all_sprites_list = pygame.sprite.Group()
+
     def set_square(self, pos, color):
         s = Square(self.square_size, color)
         self.window.blit(
@@ -33,6 +35,8 @@ class Game:
         while self.is_running:
             self.game_loop()
 
+            all_sprites_list.update()
+
             pygame.display.flip()
 
     def game_loop(self):
@@ -43,6 +47,16 @@ class Game:
                 sys.exit()
 
 
+class Sprite(pygame.sprite.Sprite):
+    def __init__(self, color, width, height):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = pygame.Surface([width, height])
+        self.image.fill(color)
+
+        self.rect = self.image.get_rect()
+
+
 class Square(pygame.sprite.Sprite):
     def __init__(self, size, color):
         super().__init__()
@@ -51,4 +65,11 @@ class Square(pygame.sprite.Sprite):
 
 
 game = Game(40, 15)
+
+sprite = Sprite((255, 0, 0), 15, 15)
+sprite.rect.x = 0
+sprite.rect.y = 0
+
+game.all_sprites_list.add(sprite)
+
 game.run()
