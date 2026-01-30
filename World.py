@@ -2,6 +2,7 @@ import numpy as np
 import random as rd
 from grass import Grass
 from wolf import Wolf
+from sheep import Sheep
 
 
 class World:
@@ -57,3 +58,18 @@ class World:
 
             wolf = Wolf(self, initial_energy, pos)
             self.wolves.append(wolf)
+
+    def spawn_sheeps(self, sheeps_count, initial_energy):
+        positions = []
+        for i in range(sheeps_count):
+            pos = (rd.randint(
+                0, self.grid_size), rd.randint(0, self.grid_size))
+
+            while pos in positions:
+                pos = (rd.randint(
+                    0, self.grid_size), rd.randint(0, self.grid_size))
+
+            positions.append(pos)
+
+            sheep = Sheep(self, initial_energy, pos)
+            self.sheeps.append(sheep)
