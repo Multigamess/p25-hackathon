@@ -22,5 +22,5 @@ optionnel
 1. IA pour les loups/moutons
 2. obstacles (rivières)
 
-aymeric ne contribue pas au projet
+aymeric ne contribue pas au projet --> c'est réel !
 
