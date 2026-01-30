@@ -32,14 +32,12 @@ class World:
         else:
             return False
 
-    def is_there_grass(self, square):
+    def is_there_grass(self, pos):
         grass_pos = []
         for g in self.grasses:
-            grass_pos.append(g.position)
-        if square in grass_pos:
-            return True
-        else:
-            return False
+            if g.position[0] == pos[0] and g.position[1] == pos[1]:
+                return True
+        return False
 
     def is_valid_coordinates(self, pos):
         return 0 <= pos[0] and pos[0] < self.grid_size and 0 <= pos[1] and pos[1] < self.grid_size

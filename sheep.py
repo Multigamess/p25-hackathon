@@ -7,9 +7,9 @@ from animal import Animal
 class Sheep(Animal):
 
     def eat_grass(self, grass_position):
-        for gra in self.world.grasses:
-            if gra.position == grass_position:
-                grass = gra
+        for g in self.world.grasses:
+            if g.position[0] == grass_position[0] and g.position[1] == grass_position[1]:
+                grass = g
         self.energy += grass.age * 10
         grass.die()
 
