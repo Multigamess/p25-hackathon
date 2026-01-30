@@ -5,15 +5,8 @@ from grass.py import *
 dim = 50
 
 
-class Sheep:
-    def __init__(self, energy, position):
-        self.energy = energy
-        self.pos = position
-        self.age = 0
-    
-    def upgrade_energy(self):
-        self.age += 1
-        self.energy -= 1
+class Sheep(Animal):
+
     
     def eat_grass(self, grass):
         self.energy += grass.age * 10
