@@ -24,10 +24,11 @@ class World:
         self.size
         self.world_time = Time(0, 0, 0)
         self.map = self.generate_world()
+        self.grasses = []
         pass
 
-    def generate_world(self):
-        return np.random.uniform(0, 1, (self.size, self.size))
+    def generate_heightmap(self):
+        heightmap = np.random.uniform(0, 1, (self.size, self.size))
 
     def tick(self):
         self.world_time.add_second(1)
