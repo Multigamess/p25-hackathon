@@ -45,6 +45,8 @@ class World:
         self.world_time = Time(0, 0, 0)
         self.heightmap = self.generate_heightmap()
         self.grasses = {}
+        self.wolves = []
+        self.sheeps = []
         pass
 
     def generate_grass(self, p=0.1):
