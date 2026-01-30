@@ -22,19 +22,8 @@ optionnel
 1. IA pour les loups/moutons
 2. obstacles (rivières)
 
-- Zinky zoogle, zeekybooble beeble meep Forp Bogos Binted ?
-- Photos printed
-- Vorp ?
 
-
-- Hey, just wondering if you got your photos printed ?
-- Bogos binted ?
-- What ?
-
-
-
-update de 14h30 :
-- résoudre les conflits entre moutons/loups
-- manger l'herbe
-- manger les moutons
-- l'herbe spawn
+update de 16h30 :
+- conflits entre loups
+- algo moutons
+- obstacles
