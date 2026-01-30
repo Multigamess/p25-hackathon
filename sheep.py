@@ -28,7 +28,7 @@ class Sheep(Animal):
         neighbors = []
         for v in to_check:
             x, y = self.position[0] + v[0], self.position[1] + v[1]
-            if self.world.is_valid_coordinates(x, y):
+            if self.world.is_valid_coordinates((x, y)):
                 neighbors.append((x, y))
         return neighbors
 

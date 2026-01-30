@@ -29,11 +29,11 @@ class Animal:
         # probability to go in x direction
         p = abs(dx)/(abs(dx) + abs(dy))
         if np.random.rand() < p:
-            print("in x ")
-            return int(np.sign(dx + 0.5)) * (1, 0)
+            sign = int(np.sign(dx + 0.5))
+            return (sign, 0)
         else:
-            print("in y ", np.sign(dy + 0.5))
-            return int(np.sign(dy + 0.5)) * (0, 1)
+            sign = int(np.sign(dx + 0.5))
+            return (0, sign)
 
     # def next_move(self, target):
     #     target_near = is_target_near()

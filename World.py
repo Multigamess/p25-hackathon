@@ -22,8 +22,7 @@ class World:
     def tick(self):
         self.world_time.add_second(1)
         pass
-    
-        
+
     def is_there_wolf(self, square):
         wolves_pos = []
         for w in self.wolves:
@@ -42,9 +41,8 @@ class World:
         else:
             return False
 
-
-    def is_valid_coordinates(self, x, y):
-        return 0 <= x and x < self.grid_size and 0 <= y and y < self.grid_size
+    def is_valid_coordinates(self, pos):
+        return 0 <= pos[0] and pos[0] < self.grid_size and 0 <= pos[1] and pos[1] < self.grid_size
 
     def display(self):
 
