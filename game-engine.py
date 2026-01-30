@@ -19,8 +19,6 @@ class Game:
         self.is_running = False
 
         self.world = World(config.GRID_SIZE)
-        self.world.generate_grass(
-            config.INITIAL_GRASS_COVERAGE, config.GRASS_REGROWTH_TIME)
 
         self.draw_terrain()
         self.update_sheeps()
@@ -66,6 +64,9 @@ class Game:
     def draw_terrain(self):
         self.window.fill((125, 63, 24))
 
+        for water_pos in self.world.water:
+            self.set_square(water_pos, (0, 0, 255))
+
         for grass in self.world.grasses:
             self.set_square(grass.position, (34, 214, 9)
                             if grass.age == 1 else (32, 168, 13))
@@ -101,7 +102,6 @@ class Game:
     def update_wolves(self):
         for wolf in self.world.wolves:
             wolf.update()
-            print(wolf.position, wolf.energy)
             self.draw_wolf(wolf.position)
 
     def draw_sheep(self, pos):
@@ -126,6 +126,12 @@ class Square(pygame.sprite.Sprite):
 
 game = Game()
 world = game.world
+lake_coord1 = world.get_random_coordinates()
+world.add_lake(25, lake_coord1[0], lake_coord1[1])
+lake_coord2 = world.get_random_coordinates()
+world.add_lake(40, lake_coord2[0], lake_coord2[1])
+world.generate_grass(
+    config.INITIAL_GRASS_COVERAGE, config.GRASS_REGROWTH_TIME)
 world.spawn_wolves(config.INITIAL_WOLVES)
 world.spawn_sheeps(config.INITIAL_SHEEPS)
 # world.wolves.append(Wolf(world, 1, (0, 0)))

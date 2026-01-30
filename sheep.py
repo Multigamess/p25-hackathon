@@ -35,13 +35,13 @@ class Sheep(Animal):
 
         new_pos = self.position[0] + \
             next_move[0], self.position[1]+next_move[1]
-        if self.world.is_valid_coordinates(new_pos) and not (self.world.is_there_sheep(new_pos)):
+        if self.world.is_valid_coordinates(new_pos) and not (self.world.has_sheep(new_pos)) and not (self.world.has_water(new_pos)):
             self.position = new_pos
 
     def update(self):
         self.move()
 
-        if self.world.is_there_grass(self.position):
+        if self.world.has_grass(self.position):
             self.eat_grass(self.position)
 
         self.upgrade_energy(config.SHEEP_ENERGY_LOSS_PER_TURN)

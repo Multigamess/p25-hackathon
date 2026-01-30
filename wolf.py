@@ -28,7 +28,7 @@ class Wolf(Animal):
             next_move = self.get_next_move(nearest_sheep.position)
             new_pos = self.position[0] + \
                 next_move[0], self.position[1]+next_move[1]
-            if self.world.is_valid_coordinates(new_pos):
+            if self.world.is_valid_coordinates(new_pos) and not (self.world.has_wolf(new_pos)) and not (self.world.has_water(new_pos)):
                 self.position = new_pos
 
     def get_nearest_sheep(self):
@@ -51,7 +51,7 @@ class Wolf(Animal):
         self.tick += 1
         self.move()
 
-        if self.world.is_there_sheep(self.position):
+        if self.world.has_sheep(self.position):
             self.eat_sheep()
 
         self.reproduce()

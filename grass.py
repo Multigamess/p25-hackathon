@@ -28,7 +28,7 @@ class Grass:
             voisins = self.world.get_neighbors(self.position)
             if len(voisins) != 0:
                 neighbour_selected = rd.choice(voisins)
-                if not self.world.is_there_grass(neighbour_selected):
+                if not self.world.has_grass(neighbour_selected) and neighbour_selected not in self.world.water:
                     grass = Grass(self.world, neighbour_selected,
                                   1, self.regrowth_time)
                     self.world.grasses.append(grass)

@@ -9,6 +9,7 @@ import gameconfig as config
 class World:
     def __init__(self, grid_size):
         self.grid_size = grid_size
+        self.water = []
         self.grasses = []
         self.wolves = []
         self.sheeps = []
@@ -18,21 +19,14 @@ class World:
         grass_positions = np.argwhere(grass_init)
 
         for pos in grass_positions:
-            self.grasses.append(
-                Grass(self, pos, rd.randint(1, 2), regrowth_time))
+            x, y = pos[0], pos[1]
+            if (x, y) not in self.water:
+                self.grasses.append(
+                    Grass(self, (x, y), rd.randint(1, 2), regrowth_time))
 
     def tick(self):
         self.world_time.add_second(1)
         pass
-
-    def is_there_wolf(self, square):
-        wolves_pos = []
-        for w in self.wolves:
-            wolves_pos = w.pos.append()
-        if square in wolves_pos:
-            return True
-        else:
-            return False
 
     def get_neighbors(self, pos):
         to_check = [(1, 0), (0, 1), (-1, 0), (0, -1)]
@@ -43,17 +37,26 @@ class World:
                 neighbors.append((x, y))
         return neighbors
 
-    def is_there_grass(self, pos):
+    def has_grass(self, pos):
         for g in self.grasses:
             if g.position[0] == pos[0] and g.position[1] == pos[1]:
                 return True
         return False
 
-    def is_there_sheep(self, pos):
+    def has_wolf(self, pos):
+        for w in self.wolves:
+            if w.position[0] == pos[0] and w.position[1] == pos[1]:
+                return True
+        return False
+
+    def has_sheep(self, pos):
         for s in self.sheeps:
             if s.position[0] == pos[0] and s.position[1] == pos[1]:
                 return True
         return False
+
+    def has_water(self, pos):
+        return pos in self.water
 
     def is_valid_coordinates(self, pos):
         return 0 <= pos[0] and pos[0] < self.grid_size and 0 <= pos[1] and pos[1] < self.grid_size
@@ -64,7 +67,7 @@ class World:
             pos = (rd.randint(
                 0, self.grid_size-1), rd.randint(0, self.grid_size-1))
 
-            while pos in positions:
+            while pos in positions or pos in self.water:
                 pos = (rd.randint(
                     0, self.grid_size-1), rd.randint(0, self.grid_size-1))
 
@@ -80,7 +83,7 @@ class World:
             pos = (rd.randint(
                 0, self.grid_size-1), rd.randint(0, self.grid_size-1))
 
-            while pos in positions:
+            while pos in positions or pos in self.water:
                 pos = (rd.randint(
                     0, self.grid_size-1), rd.randint(0, self.grid_size-1))
 
@@ -98,3 +101,20 @@ class World:
             for neigh in neighbors:
                 heatmap[neigh[0], neigh[1]] = 0.5
         return heatmap
+
+    def add_lake(self, max_size, x, y):
+        size = 0
+        lake = []
+        to_check = [(x, y)]
+        while len(to_check) > 0 and size < max_size:
+            pos = rd.choice(to_check)
+
+            if pos not in lake:
+                lake.append(pos)
+                self.water.append(pos)
+                size += 1
+                neighbors = self.get_neighbors(pos)
+                to_check.extend(neighbors)
+
+    def get_random_coordinates(self):
+        return (rd.randint(0, self.grid_size-1), rd.randint(0, self.grid_size-1))
