@@ -14,5 +14,17 @@ WOLF_ENERGY_LOSS_PER_TURN: perte d'énergie par pas de simu pour les loups
 GRASS_REGROWTH_TIME: période de repousse de l'herbe
 
 Les règles implémentées sont les suivantes:
--les moutons mangent de l'hebre pour gagner de l'énergie
--les moutons 
+
+Les moutons:
+-mangent de l'herbe pour gagner de l'énergie
+-se reproduisent
+-se déplacent vers là où il y'a de l'herbe et ils fuient aussi les loups
+
+Les loups:
+-mangent les moutons pour gagner de l'énergie
+-se reproduisent
+-se déplacent vers là où il y'a des moutons
+
+L'herbe:
+-grandi dans le temps, elle fourni alors plus d'énergie aux moutons
+-repousse aléatoirement une fois qu'elle a été mangée
