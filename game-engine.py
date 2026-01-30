@@ -6,17 +6,27 @@ from wolf import Wolf
 from sheep import Sheep
 from world import World
 
+GRID_SIZE = 40
+PIXEL_SIZE = 16
+INITIAL_SHEEPS = 50
+INITIAL_WOLVES = 10
+INITIAL_GRASS_COVERAGE = 0.3
+
+SHEEP_INITIAL_ENERGY = 20
+WOLF_INITIAL_ENERGY = 40
+
 
 class Game:
-    def __init__(self, grid_size, square_size):
+    def __init__(self):
         pygame.init()
-        self.square_size = square_size
+        self.square_size = PIXEL_SIZE
         self.window = pygame.display.set_mode(
-            (grid_size*square_size, grid_size*square_size))
+            (GRID_SIZE*PIXEL_SIZE, GRID_SIZE*PIXEL_SIZE))
 
         self.is_running = False
 
-        self.world = World(grid_size)
+        self.world = World(GRID_SIZE)
+        self.world.generate_grass(INITIAL_GRASS_COVERAGE)
 
         self.draw_terrain()
         self.update_sheeps()
@@ -96,8 +106,10 @@ class Square(pygame.sprite.Sprite):
         self.surf.fill(color)
 
 
-game = Game(40, 16)
+game = Game()
 world = game.world
-world.wolves.append(Wolf(world, 1, (0, 0)))
-world.sheeps.append(Sheep(world, 1, (39, 39)))
+world.spawn_wolves(INITIAL_WOLVES, WOLF_INITIAL_ENERGY)
+world.spawn_sheeps(INITIAL_SHEEPS, SHEEP_INITIAL_ENERGY)
+# world.wolves.append(Wolf(world, 1, (0, 0)))
+# world.sheeps.append(Sheep(world, 1, (30, 30)))
 game.run()
