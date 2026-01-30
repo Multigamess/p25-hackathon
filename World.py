@@ -55,7 +55,7 @@ class World:
             self.grasses[pos] = Grass(pos, 0)
 
     def generate_heightmap(self):
-        return np.random.uniform(0, 1, (self.grid_size, self.grid_size))
+        return np.sin(np.sin(np.random.uniform(0.5, 1, (self.grid_size, self.grid_size))))
 
     def tick(self):
         self.world_time.add_second(1)

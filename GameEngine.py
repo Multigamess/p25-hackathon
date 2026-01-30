@@ -18,7 +18,7 @@ class Game:
         self.world = World.World(grid_size)
 
         for pos, value in np.ndenumerate(self.world.heightmap):
-            self.set_square(pos, (0, int(value * 255), 0))
+            self.set_square(pos, (0, abs(int(value * 255)), 0))
 
     def set_square(self, pos, color):
         s = Square(self.square_size, color)
