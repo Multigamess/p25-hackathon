@@ -36,16 +36,22 @@ class Wolf(Animal):
         return nearest
 
     def die(self):
-        self.compteur = 0
+        self.tick = 0
         self.age = 0
         self.world.wolves.remove(self)
-    
+
     def update(self):
+        self.tick += 1
         self.move()
-        self.upgrade_energy()
 
         if self.world.is_there_sheep(self.position):
             self.eat_sheep()
-        
+
+        if (self.tick == 20 or self.tick == 40) and self.age < 3:
+            self.age += 1
+
+        if self.tick % 10 == 0:
+            self.energy -= 10
+
         if self.energy < 0:
             self.die()

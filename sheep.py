@@ -15,7 +15,7 @@ class Sheep(Animal):
 
     def reproduce(self):
         pass
-    
+
     def move(self):
         neighbors = self.get_neighbors()
         target = rd.choice(neighbors)
@@ -35,7 +35,7 @@ class Sheep(Animal):
             if self.world.is_valid_coordinates((x, y)):
                 neighbors.append((x, y))
         return neighbors
-    
+
     def update(self):
         self.move()
         self.upgrade_energy()
@@ -43,11 +43,11 @@ class Sheep(Animal):
         if self.world.is_there_grass(self.position):
             self.eat_grass(self.position)
             print(f'Grass in {self.position} eaten')
-        
+
         if self.energy < 0:
             self.die()
 
     def die(self):
-        self.compteur = 0
+        self.comtickpteur = 0
         self.age = 0
         self.world.sheeps.remove(self)

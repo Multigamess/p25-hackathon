@@ -8,8 +8,8 @@ from world import World
 
 GRID_SIZE = 40
 PIXEL_SIZE = 16
-INITIAL_SHEEPS = 50
-INITIAL_WOLVES = 10
+INITIAL_SHEEPS = 0
+INITIAL_WOLVES = 1
 INITIAL_GRASS_COVERAGE = 0.3
 
 SHEEP_INITIAL_ENERGY = 20
@@ -80,7 +80,7 @@ class Game:
     def game_loop(self):
         self.tick += 1
 
-        print("test")
+        print("Tick")
         # quit window
         for e in pygame.event.get():
             if e.type == pygame.QUIT:

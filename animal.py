@@ -8,16 +8,7 @@ class Animal:
         self.energy = energy
         self.position = position
         self.age = 0
-        self.compteur = 0
-
-    def upgrade_energy(self):
-        self.compteur += 1
-
-        if (self.compteur == 20 or self.compteur == 40) and self.age < 3:
-            self.age += 1
-
-        if self.compteur == 10:
-            self.energy -= 10
+        self.tick = 0
 
     def get_next_move(self, target):
         dx = target[0] - self.position[0]
