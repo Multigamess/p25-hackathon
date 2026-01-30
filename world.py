@@ -12,12 +12,13 @@ class World:
         self.wolves = []
         self.sheeps = []
 
-    def generate_grass(self, p=0.1):
+    def generate_grass(self, p=0.1, regrowth_time=7):
         grass_init = np.random.rand(self.grid_size, self.grid_size) < p
         grass_positions = np.argwhere(grass_init)
 
         for pos in grass_positions:
-            self.grasses.append(Grass(self, pos, rd.randint(1, 2)))
+            self.grasses.append(
+                Grass(self, pos, rd.randint(1, 2), regrowth_time))
 
     def tick(self):
         self.world_time.add_second(1)
@@ -37,7 +38,7 @@ class World:
             if g.position[0] == pos[0] and g.position[1] == pos[1]:
                 return True
         return False
-    
+
     def is_there_sheep(self, pos):
         for s in self.sheeps:
             if s.position[0] == pos[0] and s.position[1] == pos[1]:
@@ -47,7 +48,7 @@ class World:
     def is_valid_coordinates(self, pos):
         return 0 <= pos[0] and pos[0] < self.grid_size and 0 <= pos[1] and pos[1] < self.grid_size
 
-    def spawn_wolves(self, wolves_count, initial_energy):
+    def spawn_wolves(self, wolves_count, initial_energy, energy_loss):
         positions = []
         for i in range(wolves_count):
             pos = (rd.randint(
@@ -59,10 +60,10 @@ class World:
 
             positions.append(pos)
 
-            wolf = Wolf(self, initial_energy, pos)
+            wolf = Wolf(self, initial_energy, pos, energy_loss)
             self.wolves.append(wolf)
 
-    def spawn_sheeps(self, sheeps_count, initial_energy):
+    def spawn_sheeps(self, sheeps_count, initial_energy, energy_loss):
         positions = []
         for i in range(sheeps_count):
             pos = (rd.randint(
@@ -74,5 +75,5 @@ class World:
 
             positions.append(pos)
 
-            sheep = Sheep(self, initial_energy, pos)
+            sheep = Sheep(self, initial_energy, pos, energy_loss)
             self.sheeps.append(sheep)
