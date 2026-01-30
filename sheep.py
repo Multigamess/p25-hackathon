@@ -51,7 +51,7 @@ class Sheep(Animal):
 
         self.upgrade_energy(config.SHEEP_ENERGY_LOSS_PER_TURN)
 
-        self.reproduce()
+        # self.reproduce()
 
         if self.energy < 0:
             self.die()

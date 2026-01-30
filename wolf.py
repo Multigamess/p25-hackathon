@@ -1,6 +1,7 @@
 import random as rd
 from animal import Animal
 import gameconfig as config
+import numpy as np
 
 
 class Wolf(Animal):
@@ -26,11 +27,29 @@ class Wolf(Animal):
                 self.world.wolves.append(child)
                 self.energy -= 20
 
+    def get_next_move(self, target):
+        dx = target[0] - self.position[0]
+        dy = target[1] - self.position[1]
+        print('dx dy', dx, ' ', dy)
+
+        if abs(dx) + abs(dy) == 0:
+            return (0, 0)
+
+        # probability to go in x direction
+        p = abs(dx)/(abs(dx) + abs(dy))
+        if np.random.rand() < p:
+            sign = int(np.sign(dx))
+            return (sign, 0)
+        else:
+            sign = int(np.sign(dy))
+            return (0, sign)
+
     def move(self):
 
         nearest_sheep = self.get_nearest_sheep()
         if not nearest_sheep is None:
             next_move = self.get_next_move(nearest_sheep.position)
+            print("next move", next_move)
             new_pos = self.position[0] + \
                 next_move[0], self.position[1]+next_move[1]
             if self.world.is_valid_coordinates(new_pos) and not (self.world.has_wolf(new_pos)) and not (self.world.has_water(new_pos)):

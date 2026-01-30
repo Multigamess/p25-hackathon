@@ -27,8 +27,8 @@ class Animal:
         # probability to go in x direction
         p = abs(dx)/(abs(dx) + abs(dy))
         if np.random.rand() < p:
-            sign = int(np.sign(dx + 0.5))
+            sign = int(np.sign(dx))
             return (sign, 0)
         else:
-            sign = int(np.sign(dx + 0.5))
+            sign = int(np.sign(dy))
             return (0, sign)
