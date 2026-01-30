@@ -5,33 +5,22 @@ import numpy as np
 from wolf import Wolf
 from sheep import Sheep
 from world import World
-
-GRID_SIZE = 40
-PIXEL_SIZE = 16
-INITIAL_SHEEPS = 50
-INITIAL_WOLVES = 10
-INITIAL_GRASS_COVERAGE = 0.3
-
-SHEEP_INITIAL_ENERGY = 20
-WOLF_INITIAL_ENERGY = 10
-SHEEP_ENERGY_LOSS_PER_TURN = 1
-WOLF_ENERGY_LOSS_PER_TURN = 2
-
-GRASS_REGROWTH_TIME = 7
+import gameconfig as config
 
 
 class Game:
     def __init__(self):
         pygame.init()
         self.tick = 0
-        self.square_size = PIXEL_SIZE
+        self.square_size = config.PIXEL_SIZE
         self.window = pygame.display.set_mode(
-            (GRID_SIZE*PIXEL_SIZE, GRID_SIZE*PIXEL_SIZE))
+            (config.GRID_SIZE*config.PIXEL_SIZE, config.GRID_SIZE*config.PIXEL_SIZE))
 
         self.is_running = False
 
-        self.world = World(GRID_SIZE)
-        self.world.generate_grass(INITIAL_GRASS_COVERAGE, GRASS_REGROWTH_TIME)
+        self.world = World(config.GRID_SIZE)
+        self.world.generate_grass(
+            config.INITIAL_GRASS_COVERAGE, config.GRASS_REGROWTH_TIME)
 
         self.draw_terrain()
         self.update_sheeps()
@@ -137,10 +126,10 @@ class Square(pygame.sprite.Sprite):
 
 game = Game()
 world = game.world
-world.spawn_wolves(INITIAL_WOLVES, WOLF_INITIAL_ENERGY,
-                   WOLF_ENERGY_LOSS_PER_TURN)
-world.spawn_sheeps(INITIAL_SHEEPS, SHEEP_INITIAL_ENERGY,
-                   SHEEP_ENERGY_LOSS_PER_TURN)
+world.spawn_wolves(config.INITIAL_WOLVES, config.WOLF_INITIAL_ENERGY,
+                   config.WOLF_ENERGY_LOSS_PER_TURN)
+world.spawn_sheeps(config.INITIAL_SHEEPS, config.SHEEP_INITIAL_ENERGY,
+                   config.SHEEP_ENERGY_LOSS_PER_TURN)
 # world.wolves.append(Wolf(world, 1, (0, 0)))
 # world.sheeps.append(Sheep(world, 1, (30, 30)))
 game.run()

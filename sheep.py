@@ -2,6 +2,7 @@ import random as rd
 import numpy as np
 from grass import *
 from animal import Animal
+import gameconfig as config
 
 
 class Sheep(Animal):
@@ -14,7 +15,12 @@ class Sheep(Animal):
         grass.die()
 
     def reproduce(self):
-        pass
+        if self.energy > 50:
+            pos = rd.choice(self.world.get_neighbors(self.position))
+            child = Sheep(self.world, config.SHEEP_INITIAL_ENERGY,
+                          pos, config.SHEEP_ENERGY_LOSS_PER_TURN)
+            self.world.sheeps.append(child)
+            self.energy -= 20
 
     def move(self):
         neighbors = self.world.get_neighbors(self.position)
@@ -24,7 +30,7 @@ class Sheep(Animal):
 
         new_pos = self.position[0] + \
             next_move[0], self.position[1]+next_move[1]
-        if self.world.is_valid_coordinates(new_pos) and not(self.world.is_there_sheep(new_pos)):
+        if self.world.is_valid_coordinates(new_pos) and not (self.world.is_there_sheep(new_pos)):
             self.position = new_pos
 
     def update(self):
@@ -34,6 +40,8 @@ class Sheep(Animal):
             self.eat_grass(self.position)
 
         self.upgrade_energy(5)
+
+        self.reproduce()
 
         if self.energy < 0:
             self.die()
