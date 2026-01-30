@@ -5,22 +5,19 @@ from grass.py import *
 dim = 50
 
 
-class sheep :
-    def __init__(self, v, position, age = 20):
-        self.life= v
-        self.pos = position #un couple(x, y)
-        self.age = age
+class Sheep:
+    def __init__(self, energy, position):
+        self.energy = energy
+        self.pos = position
+        self.age = 0
     
-    def actualize_age(self):
+    def upgrade_energy(self):
         self.age += 1
+        self.energy -= 1
     
-    def eat_grass(self):
-        self.life+=energy_grass
-    
-    def fuck(self):
-        if self.life>20:
-            mouton2 = sheep(30, (self.pos[0],self.pos[1]), 0)
-            self.vie-=20
+    def eat_grass(self, grass):
+        self.energy += grass.age * 10
+        grass.ate()
 
     def move(self):
         h = grass()
