@@ -8,12 +8,12 @@ from world import World
 
 GRID_SIZE = 40
 PIXEL_SIZE = 16
-INITIAL_SHEEPS = 50
-INITIAL_WOLVES = 10
+INITIAL_SHEEPS = 1
+INITIAL_WOLVES = 1
 INITIAL_GRASS_COVERAGE = 0.3
 
 SHEEP_INITIAL_ENERGY = 20
-WOLF_INITIAL_ENERGY = 40
+WOLF_INITIAL_ENERGY = 10
 
 
 class Game:
@@ -80,7 +80,7 @@ class Game:
     def game_loop(self):
         self.tick += 1
 
-        print("test")
+        print("Tick")
         # quit window
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
@@ -108,7 +108,7 @@ class Game:
     def update_wolves(self):
         for wolf in self.world.wolves:
             wolf.update()
-            print(wolf.position)
+            print(wolf.position, wolf.energy)
             self.draw_wolf(wolf.position)
 
     def draw_sheep(self, pos):
