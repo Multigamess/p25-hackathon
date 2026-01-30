@@ -28,18 +28,6 @@ class World:
         self.world_time.add_second(1)
         pass
 
-<<<<<<< HEAD
-=======
-    def is_there_wolf(self, square):
-        wolves_pos = []
-        for w in self.wolves:
-            wolves_pos.append(w.position)
-        if square in wolves_pos:
-            return True
-        else:
-            return False
-
->>>>>>> 78e0b63c650f64931a3747186ea0513ae5b6c836
     def get_neighbors(self, pos):
         to_check = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         neighbors = []
