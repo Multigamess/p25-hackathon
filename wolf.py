@@ -8,6 +8,11 @@ class Wolf(Animal):
 
     def eat_sheep(self):
         self.energy += 10
+        for s in self.world.sheeps:
+            if s.position[0] == self.position[0] and s.position[1] == self.position[1]:
+                sheep = s
+        self.energy += sheep.age * 10
+        sheep.die()
 
     def move(self):
 
@@ -34,3 +39,10 @@ class Wolf(Animal):
         self.compteur = 0
         self.age = 0
         self.world.wolves.remove(self)
+    
+    def update(self):
+        self.move()
+        self.upgrade_energy()
+
+        if self.world.is_there_sheep(self.position):
+            self.eat_sheep()

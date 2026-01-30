@@ -33,9 +33,14 @@ class World:
             return False
 
     def is_there_grass(self, pos):
-        grass_pos = []
         for g in self.grasses:
             if g.position[0] == pos[0] and g.position[1] == pos[1]:
+                return True
+        return False
+    
+    def is_there_sheep(self, pos):
+        for s in self.sheeps:
+            if s.position[0] == pos[0] and s.position[1] == pos[1]:
                 return True
         return False
 
