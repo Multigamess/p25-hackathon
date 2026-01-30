@@ -11,15 +11,15 @@ class Game:
         self.square_size = square_size
         self.window = pygame.display.set_mode(
             (grid_size*square_size, grid_size*square_size))
-        self.window.fill((125, 63, 24))
 
         self.is_running = False
 
         self.world = World.World(grid_size)
 
-        for grass in self.world.grasses:
-            self.set_square(grass.position, (34, 214, 9)
-                            if grass.age == 1 else (32, 168, 13))
+        self.draw_terrain()
+        self.update_sheeps()
+        self.update_wolves()
+        pygame.display.flip()
 
     def set_square(self, pos, color):
         s = Square(self.square_size, color)
@@ -31,10 +31,22 @@ class Game:
 
     def run(self):
         self.is_running = True
+        sheep = game.draw_sheep((1, 3))
+        wolf = game.draw_wolf((1, 5))
         while self.is_running:
+            pygame.time.delay(1000)
+
             self.game_loop()
+            sheep.kill()
 
             pygame.display.flip()
+
+    def draw_terrain(self):
+        self.window.fill((125, 63, 24))
+
+        for grass in self.world.grasses:
+            self.set_square(grass.position, (34, 214, 9)
+                            if grass.age == 1 else (32, 168, 13))
 
     def game_loop(self):
         print("test")
@@ -43,18 +55,30 @@ class Game:
                 pygame.quit()
                 sys.exit()
 
-            game.display_sheep((1, 3))
-            game.display_wolf((1, 5))
+            self.draw_terrain()
 
-    def display_sheep(self, pos):
+            self.update_sheeps()
+            self.update_wolves()
+
+    def update_sheeps(self):
+        for sheep in self.world.sheeps:
+            self.draw_sheep(sheep.position)
+
+    def update_wolves(self):
+        for wolf in self.world.wolves:
+            self.draw_sheep(wolf.position)
+
+    def draw_sheep(self, pos):
         s = Square(self.square_size, (255, 255, 255))
         self.window.blit(
             s.surf, (pos[0]*self.square_size, pos[1]*self.square_size))
+        return s
 
-    def display_wolf(self, pos):
+    def draw_wolf(self, pos):
         s = Square(self.square_size, (255, 20, 20))
         self.window.blit(
             s.surf, (pos[0]*self.square_size, pos[1]*self.square_size))
+        return s
 
 
 class Square(pygame.sprite.Sprite):
