@@ -126,10 +126,8 @@ class Square(pygame.sprite.Sprite):
 
 game = Game()
 world = game.world
-world.spawn_wolves(config.INITIAL_WOLVES, config.WOLF_INITIAL_ENERGY,
-                   config.WOLF_ENERGY_LOSS_PER_TURN)
-world.spawn_sheeps(config.INITIAL_SHEEPS, config.SHEEP_INITIAL_ENERGY,
-                   config.SHEEP_ENERGY_LOSS_PER_TURN)
+world.spawn_wolves(config.INITIAL_WOLVES)
+world.spawn_sheeps(config.INITIAL_SHEEPS)
 # world.wolves.append(Wolf(world, 1, (0, 0)))
 # world.sheeps.append(Sheep(world, 1, (30, 30)))
 game.run()

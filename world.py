@@ -3,6 +3,7 @@ import random as rd
 from grass import Grass
 from wolf import Wolf
 from sheep import Sheep
+import gameconfig as config
 
 
 class World:
@@ -57,7 +58,7 @@ class World:
     def is_valid_coordinates(self, pos):
         return 0 <= pos[0] and pos[0] < self.grid_size and 0 <= pos[1] and pos[1] < self.grid_size
 
-    def spawn_wolves(self, wolves_count, initial_energy, energy_loss):
+    def spawn_wolves(self, wolves_count):
         positions = []
         for i in range(wolves_count):
             pos = (rd.randint(
@@ -69,10 +70,11 @@ class World:
 
             positions.append(pos)
 
-            wolf = Wolf(self, initial_energy, pos, energy_loss)
+            wolf = Wolf(self, config.WOLF_INITIAL_ENERGY,
+                        pos, config.WOLF_ENERGY_LOSS_PER_TURN)
             self.wolves.append(wolf)
 
-    def spawn_sheeps(self, sheeps_count, initial_energy, energy_loss):
+    def spawn_sheeps(self, sheeps_count):
         positions = []
         for i in range(sheeps_count):
             pos = (rd.randint(
@@ -84,5 +86,6 @@ class World:
 
             positions.append(pos)
 
-            sheep = Sheep(self, initial_energy, pos, energy_loss)
+            sheep = Sheep(self, config.SHEEP_INITIAL_ENERGY,
+                          pos, config.SHEEP_ENERGY_LOSS_PER_TURN)
             self.sheeps.append(sheep)
