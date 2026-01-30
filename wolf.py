@@ -17,7 +17,7 @@ class Wolf(Animal):
         if self.energy > 80:
             neighbours_valid = []
             for square in self.world.get_neighbors(self.position):
-                if not (self.world.is_there_wolf(square)):
+                if not (self.world.has_wolf(square)):
                     neighbours_valid.append(square)
             if len(neighbours_valid) > 0:
                 pos = rd.choice(neighbours_valid)
