@@ -37,9 +37,11 @@ class Game:
     def display_hud(self):
         font = pygame.font.Font(None, 32)
         wolf_text = font.render(
-            f'Wolves {len(self.world.wolves)}', True, (0, 0, 255))
+            f'Wolves {len(self.world.wolves)}', True, (0, 0, 255), (0, 0, 0))
         sheep_text = font.render(
-            f'Sheeps {len(self.world.sheeps)}', True, (0, 0, 255))
+            f'Sheeps {len(self.world.sheeps)}', True, (0, 0, 255), (0, 0, 0))
+        grass_text = font.render(
+            f'Grass {len(self.world.grasses)}', True, (0, 0, 255), (0, 0, 0))
 
         wolf_rect = wolf_text.get_rect()
         wolf_rect.center = (56, 16)
@@ -48,6 +50,10 @@ class Game:
         sheep_rect = sheep_text.get_rect()
         sheep_rect.center = (56, 56)
         self.window.blit(sheep_text, sheep_rect)
+
+        grass_rect = grass_text.get_rect()
+        grass_rect.center = (56, 96)
+        self.window.blit(grass_text, grass_rect)
 
     def set_square(self, pos, color):
         s = Square(self.square_size, color)
@@ -95,7 +101,7 @@ class Game:
 
     def update_sheeps(self):
         for sheep in self.world.sheeps:
-            if self.tick%2==0:
+            if self.tick % 2 == 0:
                 sheep.update()
             self.draw_sheep(sheep.position)
 
