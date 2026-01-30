@@ -1,3 +1,4 @@
+from random import randint as rd
 
 class Animal :
     def __init__(self, energy, position):
@@ -35,23 +36,3 @@ class Animal :
         dx, dy = directions[n]
         self.pos[1] += dy
         self.pos[0] += dx
-
-class Sheep(Animal):
-
-    def eat_grass(self, grass):
-        self.energy += grass.age * 10
-        grass.ate()
-    
-    def move_wolf(self):
-        super().move('grass')
-    
-    def sheep_ate(self):
-        pass
-
-class Wolf(Animal) :
-    
-    def eat_sheep(self):
-        self.energy += 10
-    
-    def move_wolf(self):
-        super().move('sheep')
