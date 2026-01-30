@@ -8,7 +8,6 @@ class World:
     def __init__(self, grid_size):
         self.grid_size = grid_size
         self.grasses = []
-        self.generate_grass(p=0.8)
         self.wolves = []
         self.sheeps = []
 
@@ -44,6 +43,17 @@ class World:
     def is_valid_coordinates(self, pos):
         return 0 <= pos[0] and pos[0] < self.grid_size and 0 <= pos[1] and pos[1] < self.grid_size
 
-    def display(self):
+    def spawn_wolves(self, wolves_count, initial_energy):
+        positions = []
+        for i in range(wolves_count):
+            pos = (rd.randint(
+                0, self.grid_size), rd.randint(0, self.grid_size))
 
-        pass
+            while pos in positions:
+                pos = (rd.randint(
+                    0, self.grid_size), rd.randint(0, self.grid_size))
+
+            positions.append(pos)
+
+            wolf = Wolf(self, initial_energy, pos)
+            self.wolves.append(wolf)
