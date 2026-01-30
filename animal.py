@@ -34,28 +34,3 @@ class Animal:
         else:
             sign = int(np.sign(dx + 0.5))
             return (0, sign)
-
-    # def next_move(self, target):
-    #     target_near = is_target_near()
-    #     directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]
-
-    #     if target_near != (0, 0, 0, 0):
-    #         m = max(target_near)
-    #         indices_max = [i for i, val in enumerate(target_near) if val == m]
-    #         n = rd.choice(indices_max)
-    #     else:
-    #         possibles = []
-    #         if self.pos[1] < 49:
-    #             possibles.append(0)  # Top
-    #         if self.pos[1] > 0:
-    #             possibles.append(1)  # Down
-    #         if self.pos[0] > 0:
-    #             possibles.append(2)  # Left
-    #         if self.pos[0] < 49:
-    #             possibles.append(3)  # Right
-    #         n = rd.choice(possibles)
-
-    #     # Application du mouvement
-    #     dx, dy = directions[n]
-    #     self.pos[1] += dy
-    #     self.pos[0] += dx

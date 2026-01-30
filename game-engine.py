@@ -8,10 +8,11 @@ from world import World
 
 GRID_SIZE = 40
 PIXEL_SIZE = 16
-INITIAL_SHEEP = 50
+INITIAL_SHEEPS = 50
 INITIAL_WOLVES = 10
 INITIAL_GRASS_COVERAGE = 0.3
 
+SHEEP_INITIAL_ENERGY = 20
 WOLF_INITIAL_ENERGY = 40
 
 
@@ -76,7 +77,7 @@ class Game:
 
     def update_sheeps(self):
         for sheep in self.world.sheeps:
-            sheep.move()
+            sheep.update()
             self.draw_sheep(sheep.position)
 
     def update_wolves(self):
@@ -108,6 +109,7 @@ class Square(pygame.sprite.Sprite):
 game = Game()
 world = game.world
 world.spawn_wolves(INITIAL_WOLVES, WOLF_INITIAL_ENERGY)
+world.spawn_sheeps(INITIAL_SHEEPS, SHEEP_INITIAL_ENERGY)
 # world.wolves.append(Wolf(world, 1, (0, 0)))
 # world.sheeps.append(Sheep(world, 1, (30, 30)))
 game.run()
