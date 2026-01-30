@@ -89,3 +89,12 @@ class World:
             sheep = Sheep(self, config.SHEEP_INITIAL_ENERGY,
                           pos, config.SHEEP_ENERGY_LOSS_PER_TURN)
             self.sheeps.append(sheep)
+
+    def get_wolf_heatmap(self):
+        heatmap = np.zeros((config.GRID_SIZE, config.GRID_SIZE))
+        for wolf in self.wolves:
+            neighbors = self.get_neighbors(wolf.position)
+            heatmap[wolf.position[0], wolf.position[1]] = 1
+            for neigh in neighbors:
+                heatmap[neigh[0], neigh[1]] = 0.5
+        return heatmap

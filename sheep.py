@@ -25,6 +25,11 @@ class Sheep(Animal):
     def move(self):
         neighbors = self.world.get_neighbors(self.position)
         target = rd.choice(neighbors)
+        wolf_heatmap = self.world.get_wolf_heatmap()
+
+        for neigh in neighbors:
+            if wolf_heatmap[neigh[0], neigh[1]] < wolf_heatmap[target[0], target[1]]:
+                target = neigh
 
         next_move = self.get_next_move(target)
 
