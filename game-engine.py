@@ -19,6 +19,7 @@ WOLF_INITIAL_ENERGY = 40
 class Game:
     def __init__(self):
         pygame.init()
+        self.tick = 0
         self.square_size = PIXEL_SIZE
         self.window = pygame.display.set_mode(
             (GRID_SIZE*PIXEL_SIZE, GRID_SIZE*PIXEL_SIZE))
@@ -71,6 +72,8 @@ class Game:
                             if grass.age == 1 else (32, 168, 13))
 
     def game_loop(self):
+        self.tick += 1
+
         print("test")
         # quit window
         for e in pygame.event.get():
@@ -92,12 +95,13 @@ class Game:
 
     def update_sheeps(self):
         for sheep in self.world.sheeps:
-            sheep.update()
+            if self.tick%2==0:
+                sheep.update()
             self.draw_sheep(sheep.position)
 
     def update_wolves(self):
         for wolf in self.world.wolves:
-            wolf.move()
+            wolf.update()
             print(wolf.position)
             self.draw_wolf(wolf.position)
 

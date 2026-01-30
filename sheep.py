@@ -41,5 +41,7 @@ class Sheep(Animal):
             self.eat_grass(self.position)
             print(f'Grass in {self.position} eaten')
 
-    def sheep_ate(self):
-        pass
+    def die(self):
+        self.compteur = 0
+        self.age = 0
+        self.world.sheeps.remove(self)
